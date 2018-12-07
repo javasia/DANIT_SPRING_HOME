@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--<context:property-placeholder location="car.properties"/>-->
+
+
+
+    <mvc:annotation-driven />
+
+    <bean id="indexController" class="com.app.spring.mvc.homework00.IndexController"/>
+
+    <!-- Thymleaf and jetty beans. Please do not panic if it confuse you:) -->
+    <!-- There you can find simple configuration for Jetty and Thymleaf -->
+    <bean id="jettyServer" class="org.eclipse.jetty.server.Server">
+        <constructor-arg name="port" value="8080"/>
+    </bean>
+
+    <bean id="templateResolver"
+          class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
+        <property name="prefix" value="src/main/resources/templates/" />
+        <property name="suffix" value=".html" />
+        <property name="templateMode" value="HTML" />
+        <property name="cacheable" value="false" />
+    </bean>
+
+    <bean id="templateEngine"
+          class="org.thymeleaf.spring5.SpringTemplateEngine">
+        <property name="templateResolver" ref="templateResolver" />
+        <property name="enableSpringELCompiler" value="true" />
+    </bean>
+
+    <bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
+        <property name="templateEngine" ref="templateEngine" />
+        <property name="order" value="1" />
+        <property name="viewNames" value="*.html" />
+    </bean>
+
+</beans>
