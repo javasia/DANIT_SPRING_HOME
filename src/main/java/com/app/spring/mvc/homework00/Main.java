@@ -27,12 +27,6 @@ public class Main {
         }
     }
 
-
-
-
-
-
-
     // DO NOT FOCUS ON THIS
     // For embeddedJetty ONLY!
     private static void startJetty(ApplicationContext appContext) throws Exception {

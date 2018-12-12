@@ -1,0 +1,27 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Stats</title>
+</head>
+<body>
+<table style="border: 1px solid;
+    margin: auto;
+    width: 50%;
+    text-align: left;">
+    <th>ID</th>
+    <th>NAME</th>
+    <th>Subjects: [Marks]</th>
+    </tr>
+    <tr th:each="user : ${users.values()}">
+        <td th:text="${user.getID()}"></td>
+        <td th:text="${user.getNAME()}"></td>
+        <td th:each="subject : ${user.getSubjects().keySet()}">
+            <div><span th:text="${subject}"></span><span>: </span><span
+                    th:text="${user.getSubjects().get(subject)}"></span></div>
+        </td>
+    </tr>
+</table>
+<!--<div th:text=${users.toString()}></div>-->
+</body>
+</html>

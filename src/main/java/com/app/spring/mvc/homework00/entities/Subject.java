@@ -1,13 +1,27 @@
 package com.app.spring.mvc.homework00.entities;
 
-public class Subject {
-    private final long ID;
-    private final String NAME;
-    private final int GRADE;
 
-    public Subject(long id, String name, int grade) {
-        ID = id;
-        NAME = name;
-        GRADE = grade;
+import java.util.List;
+
+public class Subject {
+    private final String NAME;
+    private List<Integer> marks;
+
+    public Subject(String name, List<Integer> marks) {
+        this.NAME = name;
+        this.marks = marks;
+    }
+
+    public String getNAME() {
+        return NAME;
+    }
+
+    public List<Integer> getMarks() {
+        return marks;
+    }
+
+    @Override
+    public String toString() {
+        return "Subject{" + "NAME='" + NAME + '\'' + ", marks=" + marks + '}';
     }
 }

@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="homework_spring_controllers" target="1.5" />
+      <module name="homework_spring_controllers" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
