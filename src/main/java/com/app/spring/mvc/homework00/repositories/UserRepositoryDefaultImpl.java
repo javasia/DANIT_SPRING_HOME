@@ -1,9 +1,10 @@
 package com.app.spring.mvc.homework00.repositories;
 
+import com.app.spring.mvc.homework00.db.DB;
 import com.app.spring.mvc.homework00.entities.Subject;
 import com.app.spring.mvc.homework00.entities.User;
 import com.app.spring.mvc.homework00.entities.UserImp;
-import com.app.spring.mvc.homework00.db.DB;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -18,8 +19,6 @@ public class UserRepositoryDefaultImpl implements Repository {
 
     UserRepositoryDefaultImpl(DB db) {
         this.DB = db;
-
-        initUsers();
     }
 
     private void initUsers() {
@@ -27,12 +26,12 @@ public class UserRepositoryDefaultImpl implements Repository {
             String[] idNameSubject = userDBFormattedString.split(";");
             User user = new UserImp(Long.parseLong(idNameSubject[0]), idNameSubject[1]);
             String[] subjectsMarks = idNameSubject[2].split("\\+");
-            Map<String, List<Integer>> subjects = Arrays.stream(subjectsMarks).collect(Collectors.toMap(subject -> subject.split(":")[0], marks -> {
-                return Arrays.stream(marks.split(":")[1]
-                        .split(","))
-                        .map(mark -> Integer.parseInt(mark))
-                        .collect(Collectors.toList());
-            }));
+            Map<String, List<Integer>> subjects = Arrays.stream(subjectsMarks)
+                    .collect(Collectors
+                            .toMap(subject -> subject.split(":")[0], marks -> Arrays.stream(marks.split(":")[1]
+                                    .split(","))
+                                    .map(mark -> Integer.parseInt(mark))
+                                    .collect(Collectors.toList())));
             subjects.keySet().forEach(key -> user.putSubject(new Subject(key, subjects.get(key))));
             return user;
         }).collect(Collectors.toMap(User::getID, user -> user));

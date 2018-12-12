@@ -11,7 +11,7 @@
 
     <bean id="indexController" class="com.app.spring.mvc.homework00.controllers.IndexController"/>
     <bean id="MockDB" class="com.app.spring.mvc.homework00.db.MockDB"/>
-    <bean id="InMemoryUserRepository" class="com.app.spring.mvc.homework00.repositories.UserRepositoryDefaultImpl">
+    <bean id="InMemoryUserRepository" class="com.app.spring.mvc.homework00.repositories.UserRepositoryDefaultImpl" init-method="initUsers">
         <constructor-arg ref="MockDB"/>
     </bean>
     <bean id="userController" class="com.app.spring.mvc.homework00.controllers.UserController">
@@ -21,7 +21,7 @@
     <!-- Thymleaf and jetty beans. Please do not panic if it confuse you:) -->
     <!-- There you can find simple configuration for Jetty and Thymleaf -->
     <bean id="jettyServer" class="org.eclipse.jetty.server.Server">
-        <constructor-arg name="port" value="8080"/>
+        <constructor-arg name="port" value="1488"/>
     </bean>
 
     <bean id="templateResolver"
